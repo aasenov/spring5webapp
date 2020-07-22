@@ -1,12 +1,13 @@
 package guru.springframework.spring5webapp.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import javax.transaction.Transactional;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
+@Transactional
 public class Publisher {
 
     @Id
@@ -18,6 +19,10 @@ public class Publisher {
     private String state;
     private int zip;
     private String addressLine1;
+
+    @OneToMany (fetch = FetchType.EAGER)
+    @JoinColumn(name = "publisher_id")
+    private Set<Book> books = new HashSet<>();
 
     public Publisher(){
 
@@ -108,4 +113,11 @@ public class Publisher {
         this.addressLine1 = addressLine1;
     }
 
+    public Set<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(Set<Book> books) {
+        this.books = books;
+    }
 }

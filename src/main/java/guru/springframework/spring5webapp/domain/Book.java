@@ -18,6 +18,9 @@ public class Book {
     @JoinTable(name="author_book", joinColumns = @JoinColumn(name="book_id"), inverseJoinColumns = @JoinColumn(name = "author_id"))
     private Set<Author> authors;
 
+    @ManyToOne
+    private Publisher publisher;
+
     public Book() {
     }
 
@@ -59,13 +62,20 @@ public class Book {
         this.authors = authors;
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(Publisher publisher) {
+        this.publisher = publisher;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Book{");
         sb.append("id=").append(id);
         sb.append(", title='").append(title).append('\'');
         sb.append(", isbn='").append(isbn).append('\'');
-        sb.append(", authors=").append(authors);
         sb.append('}');
         return sb.toString();
     }

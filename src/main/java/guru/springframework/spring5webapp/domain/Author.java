@@ -64,7 +64,6 @@ public class Author {
         sb.append("id=").append(id);
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
-        sb.append(", books=").append(books);
         sb.append('}');
         return sb.toString();
     }
